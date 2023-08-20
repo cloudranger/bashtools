@@ -52,14 +52,14 @@ user::mustbe() {
    local -r msg="$2"    # Optional - will output this if present and user does not match
    local -r exit="$3"   # Optional - will exit with this value if present and user does not match
 
-   local -r userid=$(id -u $user)
+   local -r userid=$(id -u "$user")
 
-   if [ "$(id -u)" -ne ${userid} ]; then
-      if [ ! -z "${msg}" ]; then
+   if [ "$(id -u)" -ne "${userid}" ]; then
+      if [ -n "${msg}" ]; then
          echo "${msg}"
       fi
 
-      if [ ! -z "${exit}" ]; then
+      if [ -n "${exit}" ]; then
          exit "${exit}"
       fi
 
@@ -68,4 +68,6 @@ user::mustbe() {
 
    return 0
 }
+
+
 
