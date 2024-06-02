@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+source /usr/local/bin/lxdfuncs
+
+# Adapted from https://reposhub.com/linux/miscellaneous/gruntwork-io-bash-commons.html#articleHeader2
+#
+# The first line of every script should be #!/usr/bin/env bash.
+# All code should be defined in functions.
+# Functions should exit or return 0 on success and non-zero on error.
+# Functions should return output by writing it to stdout.
+# Functions should log to stderr.
+# parameters passed to functions should be assined to local variables to self document their meaning
+# All variables in a function should be local. No global variables are allowed at all.
+# Make as many variables readonly as possible.
+# If a variable is both local and readonly, use local -r.
+# If calling to a subshell and storing the output in a variable (foo=$( ... )), do NOT use local -r in the same statement or the exit code will be lost. Instead, declare the variable as local on one line and then call the subshell on the next line.
+# Quote all strings.
+# Use [[ ... ]] instead of [ ... ].
+# Use snake_case for function and variable names. 
+# Use UPPER_SNAKE_CASE for constants.
+
+# array.sh: Helpers for working with Bash arrays, such as checking if an array contains an element, or joining an array into a string with a delimiter between elements.
+
+# assert.sh: Assertions that check a condition and exit if the condition is not met, such as asserting a variable is not empty or that an expected app is installed. Useful for defensive programming.
+
+# file.sh: A collection of helpers for working with files, such as checking if a file exists or contains certain text.
+
+# log.sh: A collection of logging helpers that write logs to stderr with log levels (INFO, WARN, ERROR) and timestamps.
+
+# os.sh: A collection of Operating System helpers, such as checking which flavor of Linux (e.g., Ubuntu, CentOS) is running and validating checksums.
+
+# string.sh: A collection of string manipulation functions, such as checking if a string contains specific text, stripping prefixes, and stripping suffixes.
+# bootstrap log assert os num str 
+
+alias static="echo"
+
+# lxd
+function static
+{
+   local -r $1
+}
+
+function num:is_integer
+{
+   static MSG="hello"
+MSG=111
+   #static MSG="hello"
+   echo $MSG
+}
+
+
+if [[ $(_isinteger_ $1) ]]; then
+   echo "yes"
+fi 
+
+
+num:is_integer
+
+
+Bashtools Global variable
+BASHTOOLS_ERRMSG     The last error message generated

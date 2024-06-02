@@ -14,7 +14,7 @@
 #
 # Author:      cloudranger
 # GitHub:      https://github.com/cloudranger
-# License:     MIT
+# License:     MIT (see file LICENSE)
 # Created:     15.08.2023
 #
 # CODING STANDARDS
@@ -32,27 +32,6 @@
 # https://github.com/bats-core/bats-core
 #
 ################################################################################
-# The MIT License (MIT)
-# Copyright © 2023 <copyright holders>
-# 
-# Permission is hereby granted, free of charge, to any person obtaining a 
-# copy of this software and associated documentation files (the “Software”), 
-# to deal in the Software without restriction, including without limitation the 
-# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
-# sell copies of the Software, and to permit persons to whom the Software is 
-# furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in 
-# all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
-# THE SOFTWARE.
-################################################################################
 
 #assert::gt
 #assert::ge
@@ -67,21 +46,21 @@ _BASHTOOLS_ASSERT_STOP=0
 _BASHTOOLS_ASSERT_VERBOSE=1
 
 
-assert::stop_on_error() {
+function assert::stop_on_error() {
   _BASHTOOLS_ASSERT_STOP=$1
 #validate
   echo "Assert: INFO: Stop on error: ${_BASHTOOLS_ASSERT_STOP}"
 }
 
 
-assert::verbose() {
+function assert::verbose() {
   _BASHTOOLS_ASSERT_VERBOSE=$1
 #validate
   echo "Assert: INFO: Verbose: ${_BASHTOOLS_ASSERT_VERBOSE}"
 }
 
 
-assert::fail() {
+function assert::fail() {
   local -r msg=$1
 
   printf "%s" "Assert: FAIL: $msg"
@@ -99,7 +78,7 @@ assert::fail() {
 }
 
 
-assert::pass() {
+function assert::pass() {
   local -r msg=$1
 
   printf "%s" "Assert: PASS: $msg"
@@ -112,7 +91,7 @@ assert::pass() {
 }
 
 
-assert::explain() {
+function assert::explain() {
   local -r msg=$1
 
   echo "$msg"
@@ -136,7 +115,7 @@ assert::explain() {
 ###############################################################################
 
 
-assert::eq() {
+function assert::eq() {
   local -r expect=$1
   local -r actual=$2
   local -r msg=$3
@@ -158,7 +137,7 @@ assert::eq() {
 
 
 
-assert::neq() {
+function assert::neq() {
   local -r expect=$1
   local -r actual=$2
   local -r msg=$3
@@ -173,7 +152,7 @@ assert::neq() {
 }
 
 
-assert::empty() {
+function assert::empty() {
   local -r expect=$1
   local -r msg=$2
 
@@ -187,7 +166,7 @@ assert::empty() {
 }
 
 
-assert::notempty() {
+function assert::notempty() {
   local -r expect=$1
   local -r msg=$2
 
@@ -204,7 +183,7 @@ assert::notempty() {
 }
 
 
-assert::contains() {
+function assert::contains() {
   local -r needle=$1
   local -r haystack=$2
   local -r msg=$3
@@ -224,7 +203,7 @@ assert::contains() {
 }
 
 
-assert::notcontains() {
+function assert::notcontains() {
   local -r needle=$1
   local -r haystack=$2
   local -r msg=$3
@@ -245,7 +224,7 @@ assert::notcontains() {
 
 
 
-assert::fails() {
+function assert::fails() {
   local -r status=$1
   local -r msg=$2
 
@@ -258,7 +237,7 @@ assert::fails() {
 }
 
 
-assert::passes() {
+function assert::passes() {
   local -r status=$1
   local -r msg=$2
 
@@ -271,16 +250,16 @@ assert::passes() {
 }
 
 
-assert::true() {
+function assert::true() {
   return 1
 }
 
-assert::false() {
+function assert::false() {
   return 0
 }
 
 
-assert::_test_() {
+function assert::_test_() {
 
   assert::stop_on_error 0
 
