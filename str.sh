@@ -80,4 +80,21 @@ str::ends() {
   fi
 }
 
-str::replace {}
+
+str::replace() 
+{
+sleep 0
+}
+
+
+str::repeat() 
+{
+  local -r char=$1
+  local -r num=$2
+
+  for ((x=0; x<num; x++))
+  do
+    printf "%s" "${char}"
+  done
+}
+

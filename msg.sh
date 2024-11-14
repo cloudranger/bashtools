@@ -34,12 +34,25 @@
 #
 ################################################################################
 
-msg::out() {
-   priority=$1
-   msg=$2
+source "$(dirname ${BASH_SOURCE[0]})/str.sh"
 
+msg::line() {
+   local -r chr=${1:-"="}
+   local -r len=${2:-80}
+   str::repeat "${chr}" "${len}"
+   echo ""
+}
+
+msg::short() {
+   local -r msg=$1
+   echo "${msg}"
+}
+
+
+msg::long() {
+   local -r msg=$1
    local out
 
-   out="$(date -Is): $(hostname) ${priority} ${0}: ${msg}"
+   out="$(date -Iseconds): $(hostname) ${0}: ${msg}"
    echo "${out}"
 }
